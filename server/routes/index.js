@@ -18,6 +18,17 @@ router.route('/user')
  .post(userController.postuser)
  .get(userController.getuser)
 
+router.route('/user/delete/:username')
+ .get(userController.deleteusers)
+router.route('/series/delete/:id')
+ .get(userController.deleteseries)
+
+router.route('/season/delete/:id')
+ .get(userController.deleteseason) 
+
+router.route('/comic/delete/:id')
+ .get(userController.deletecomic) 
+
 router.route('/user/verify')
  .post(userController.searchuser) 
 

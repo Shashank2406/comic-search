@@ -1,13 +1,54 @@
 <div class="jumbotron">
       <div class="container">
         <h1 class="text-center">Welcome</h1>
-        <p class="text-center">Super User! Please Select your Action</p>
-        <!--<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">Login</a></p>-->
+        <p class="text-center">SuperAdmin! User/Admin Page</p>
+        <button (click)="log()" class="btn btn-success">Logout</button>
       </div>
 </div>
 
+<table class="table">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>ID</th>
+        <th>Role</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let items of users">
+      <tr>
+        <td>{{items.username}}</td>
+        <td>{{items._id}}</td>
+        <td>{{items.role}}</td>
+        <button (click)="deleteuser(items.username)" type="submit" class="btn btn-success">Delete</button><button (click)="deleteuser(items.username)" type="submit" class="btn btn-success">Edit</button>
+      </tr>
+    </tbody>
+  </table>
+<button type="submit" class="btn btn-success" (click)="getapi()">Add New!</button>  
 
-<div>
+<div *ngIf="!form_add">
+<form #form1="ngForm" (ngSubmit)="postuser(form1.value)">
+    <div class="form-group">
+    <input required type="text" name="username" [(ngModel)]="user" #username="ngModel" placeholder="Enter your Username" class="form-control">
+    </div>
+    <div class="form-group">
+    <input required type="password" name="password" [(ngModel)]="pass" #password="ngModel" placeholder="Enter your Password" class="form-control">
+    </div>
+    <div>
+    <h2>{{type}}</h2>
+    <label>Type</label>
+    <select [(ngModel)]="type" name="Select type" class="ui fluid search selection dropdown"> 
+    <option *ngFor="let n of types" [attr.value]="n">{{n}}</option>
+    </select>
+</div>
+<button type="submit" class="btn btn-success">Proceed</button>
+</form>
+</div>
+
+
+
+
+<!--<div>
     <h2>You want to {{action}}</h2>
     <label>Action</label>
     <select [(ngModel)]="action" name="Select action" class="ui fluid search selection dropdown"> 
@@ -15,19 +56,36 @@
     </select>
 </div>
 <div>
-    <h2>You want to {{type}}</h2>
+    <h2>{{type}}</h2>
     <label>Type</label>
     <select [(ngModel)]="type" name="Select type" class="ui fluid search selection dropdown"> 
     <option *ngFor="let n of types" [attr.value]="n">{{n}}</option>
     </select>
 </div>
-<!--<div>
-    <h2>You want to {{type}}</h2>
-    <label>Type</label>
-    <select [(ngModel)]="type" name="Select type" class="ui fluid search selection dropdown"> 
-    <option *ngFor="let m of types" [attr.value]="m">{{m}}</option>
+
+<span *ngIf="form_add">
+<button type="submit" class="btn btn-success" (click)="getapi(action,type)">Proceed!</button>
+</span>
+
+<div *ngIf="!form_add">
+<form #form1="ngForm" (ngSubmit)="postuser(form1.value)">
+    <div class="form-group">
+    <input type="text" name="username" [(ngModel)]="user" #username="ngModel" placeholder="Enter your Username" class="form-control">
+    </div>
+    <div class="form-group">
+    <input type="password" name="password" [(ngModel)]="pass" #password="ngModel" placeholder="Enter your Password" class="form-control">
+    </div>
+<button type="submit" class="btn btn-success">Proceed</button>
+</form>
+</div>
+
+
+
+<div *ngIf="!form_delete">
+    <h2>Select User</h2>
+    
+    <select [(ngModel)]="users" name="Select type" class="ui fluid search selection dropdown"> 
+    <option *ngFor="let n of users" [attr.value]="n">{{n}}</option>
     </select>
+    <button (click)="deleteuser(users)" type="submit" class="btn btn-success">Delete</button>
 </div>-->
-<button type="submit" class="btn btn-success" (click)="check(action,type)">Proceed!</button>
-
-

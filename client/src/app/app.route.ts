@@ -9,6 +9,12 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { SearchComponent } from './search/search.component';
 import { SuperComponent } from './super/super.component';
 import { AuthService } from './auth.service';
+import { AdminComponent } from './admin/admin.component';
+import { AuthadminService } from './authadmin.service';
+import { SeasonComponent } from './season/season.component';
+import { ComicAdminComponent } from './comic-admin/comic-admin.component';
+
+
 
 
 export const rou: Routes=[
@@ -17,6 +23,16 @@ export const rou: Routes=[
     {path:'search',component:SearchComponent},
     {path:'super',component:SuperComponent,
     data:[{
-        role:['superadmin','admin']
-    }],canActivate: [AuthService],}
+        role:'superadmin'
+    }],canActivate: [AuthService],},
+    {path:'admin',component:AdminComponent,
+    data:[{
+        role:'Admin'
+    }],canActivate: [AuthadminService],
+    children: [
+      { path:'season',component:SeasonComponent },
+      { path:'comicadmin',component:ComicAdminComponent},
+    ]}
+    // {path:'season',component:SeasonComponent},
+    // {path:'comicadmin',component:ComicAdminComponent}
 ];

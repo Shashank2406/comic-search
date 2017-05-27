@@ -13,7 +13,12 @@ import { SearchComponent } from './search/search.component'
 import { ConnectService } from './connect.service';
 import { SuperComponent } from './super/super.component';
 import { AuthService } from './auth.service';
-
+import { AdminComponent } from './admin/admin.component';
+import { AuthadminService } from './authadmin.service';
+import { SeasonComponent } from './season/season.component';
+import { ComicAdminComponent } from './comic-admin/comic-admin.component';
+import { DatePickerModule } from 'ng2-datepicker';
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -23,15 +28,21 @@ import { AuthService } from './auth.service';
     ComicComponent,
     WelcomeComponent,
     SearchComponent,
-    SuperComponent
+    SuperComponent,
+    AdminComponent,
+    SeasonComponent,
+    ComicAdminComponent,
+    AppComponent, FileSelectDirective
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    DatePickerModule,
     RouterModule.forRoot(rou)
   ],
-  providers: [ConnectService,AuthService],
+  providers: [ConnectService,AuthService,AuthadminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,45 @@
+<div class="jumbotron">
+      <div class="container">
+        <h1 class="text-center">Welcome</h1>
+        <p class="text-center">Admin! Series Page</p>
+        <button (click)="log()" class="btn btn-success">Logout</button>
+      </div>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let items of series">
+      <tr>
+        <td>{{items.name}}</td>
+        <td>{{items._id}}</td>
+        <td>{{items.description}}</td>
+        <button (click)="deleteuser(items._id)" type="submit" class="btn btn-success">Delete</button><button (click)="deleteuser(items.name)" type="submit" class="btn btn-success">Edit</button>
+      </tr>
+    </tbody>
+  </table>
+<button type="submit" class="btn btn-success" (click)="getapi()">Add New Series</button>  
+<button  class="btn btn-success" routerLink='/admin' routerLinkActive="active">Series</button>  
+<button  class="btn btn-success" routerLink='/admin/season' routerLinkActive="active">Season</button>  
+<button  class="btn btn-success" routerLink='/admin/comicadmin' routerLinkActive="active">Comics</button> 
+
+
+
+<div *ngIf="!form_series">
+<form #form1="ngForm" (ngSubmit)="postuser(form1.value)">
+    <div class="form-group">
+    <input required type="text" name="name" [(ngModel)]="name_1" #name="ngModel" placeholder="Name of series" class="form-control">
+    </div>
+    <div class="form-group">
+    <input required type="description" name="description" [(ngModel)]="desc" #description="ngModel" placeholder="Description" class="form-control">
+    </div>
+<button type="submit" class="btn btn-success">Proceed</button>
+</form>
+</div>
+<router-outlet></router-outlet>
