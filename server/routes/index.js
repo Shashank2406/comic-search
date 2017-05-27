@@ -41,7 +41,7 @@ router.route('/series')
  .post(userController.postseason)
  .get(userController.getseason)
 
- router.route('/comic')
+ router.route('/comic/get')
  .post(userController.postcomic)
  .get(userController.getcomic)
 

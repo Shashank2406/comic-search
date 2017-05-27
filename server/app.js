@@ -15,16 +15,20 @@ var NODE_ENV = 'development';
 //Set Variables
 app.set('env', process.env.NODE_ENV || 'production');
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
-   
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));   
 
 routes = require('./routes/index')
 app.use('/api', routes);
 
-// Use environment defined port or 3000
+
+
+
+// Use environment defined port or 2001
 var port = process.env.PORT || 2001;
 
 // Start the server

@@ -2,53 +2,55 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/RX';
+import { Observer } from "rxjs";
+import {Configuration} from "./config"
 
 @Injectable()
 export class ConnectService {
 
-  constructor(public httpcall : Http) { }
+  constructor(public httpcall : Http,public apiurl:Configuration) { }
   deleteseries(id): Observable<any> {
-    return this.httpcall.get("http://localhost:2001/api/series/delete/"+id).map(
+    return this.httpcall.get(this.apiurl.UrlObj.deleteseries+id).map(
       data => data.json()
     );
   }
   deleteseason(id): Observable<any> {
-    return this.httpcall.get("http://localhost:2001/api/season/delete/"+id).map(
+    return this.httpcall.get(this.apiurl.UrlObj.deletedseason+id).map(
       data => data.json()
     );
   }
   deleteapi(reg): Observable<any> {
-    return this.httpcall.get("http://localhost:2001/api/user/delete/" + reg).map(
+    return this.httpcall.get(this.apiurl.UrlObj.deleteapi + reg).map(
       data => data.json()
     );
   }
   deletecomic(comic_name): Observable<any> {
  
-    return this.httpcall.get("http://localhost:2001/api/comic/delete/" + comic_name).map(
+    return this.httpcall.get(this.apiurl.UrlObj.deletecomic + comic_name).map(
       data => data.json()
     );
   }
   getseries() : Observable<any>
   {
-    return this.httpcall.get("http://localhost:2001/api/series").map(
+    return this.httpcall.get(this.apiurl.UrlObj.getseries).map(
         data => data.json()
         );
   }
   getseason() : Observable<any>
   {
-    return this.httpcall.get("http://localhost:2001/api/season").map(
+    return this.httpcall.get(this.apiurl.UrlObj.getseason).map(
         data => data.json()
         );
   }
   getcomic() : Observable<any>
   {
-    return this.httpcall.get("http://localhost:2001/api/comic").map(
+    return this.httpcall.get(this.apiurl.UrlObj.getcomic).map(
         data => data.json()
         );
   }
   getusers(): Observable<any>
   {
-    return this.httpcall.get("http://localhost:2001/api/user").map(
+    return this.httpcall.get(this.apiurl.UrlObj.getuser).map(
       data=>data.json()
     );
   }
@@ -56,30 +58,37 @@ export class ConnectService {
   let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
     let options = new RequestOptions({ headers: headers });
     //console.log(form);
-    return this.httpcall.post("http://localhost:2001/api/user/verify", form, headers).map((res: Response) => res.json());
+    return this.httpcall.post(this.apiurl.UrlObj.verifyuser, form, headers).map((res: Response) => res.json());
+  }
+  postcomic(form){
+    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    console.log(form);
+    return this.httpcall.post(this.apiurl.UrlObj.postcomic, form, headers).map((res: Response) => res.json());
   }
   postuser(form){
     let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
     let options = new RequestOptions({ headers: headers });
     console.log(form);
-    return this.httpcall.post("http://localhost:2001/api/user/", form, headers).map((res: Response) => res.json());
+    return this.httpcall.post(this.apiurl.UrlObj.postuser, form, headers).map((res: Response) => res.json());
   }
   postseries(data){
     let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
     let options = new RequestOptions({ headers: headers });
     console.log(data);
-    return this.httpcall.post("http://localhost:2001/api/series/", data, headers).map((res: Response) => res.json());
+    return this.httpcall.post(this.apiurl.UrlObj.postseries, data, headers).map((res: Response) => res.json());
   }
   postseason(data){
     let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
     let options = new RequestOptions({ headers: headers });
     console.log(data);
-    return this.httpcall.post("http://localhost:2001/api/season/", data, headers).map((res: Response) => res.json());
+    return this.httpcall.post(this.apiurl.UrlObj.postseason, data, headers).map((res: Response) => res.json());
   }
   searchcall(reg): Observable<any> {
     console.log(reg);
-    return this.httpcall.get("http://localhost:2001/api/comic/" + reg).map(
+    return this.httpcall.get(this.apiurl.UrlObj.searchcomic + reg).map(
       data => data.json()
     );
   }
+
 }

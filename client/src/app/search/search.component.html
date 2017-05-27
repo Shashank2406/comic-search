@@ -14,7 +14,16 @@
  <div class="jumbotron">
       <div class="container">
        <h1 class="text-center">Search For Favorite Comics here!</h1>
-       <input type="text" #searchcomic placeholder="Search Comics" class="form-control">
+       <input required type="text" #searchcomic placeholder="Search Comics" class="form-control">
        <button type="submit" (click)="searching(searchcomic.value)" class="btn btn-success">Search</button>
       </div>
 </div>
+
+{{htmldata}}
+<!--{{data}}-->
+<!--{{searchcomic.name}}-->
+<div *ngIf="!display">
+<ul class="list-group" *ngFor="let items of data">
+  <li class="list-group-item"><a>{{items.name}}</a></li>
+</ul>
+

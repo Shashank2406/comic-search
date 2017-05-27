@@ -26,7 +26,7 @@ export class SeasonComponent implements OnInit {
   })
 }
 getapi(){
-  console.log(this.flag+" "+this.form_season)
+  //console.log(this.flag+" "+this.form_season)
   if(this.flag==0)
   {
     this.form_season=0;

@@ -12,25 +12,9 @@ import { ConnectService } from '../connect.service';
 export class SuperComponent implements OnInit {
 
   constructor(public route1:Router,public roleget:AuthService,public postapi:ConnectService) { 
-    // this.datrole=this.roleget.sendrole()
-    // if(this.datrole==data[0].role)
-    // {
-    //   this.action=data[0].data.action;
-    //   this.actions=data[0].data.actions;
-    //   this.type=data[0].data.type;
-    //   this.types=data[0].data.types;
-    // }
-    // else
-    // {
-    //   this.action=data[1].data.action;
-    //   this.actions=data[1].data.actions;
-    //   this.type=data[1].data.type;
-    //   this.types=data[1].data.types;
-    // }
+    
   }
-  users=[{}];
-  // action;
-  // actions;
+  users;
   type="Admin";
   types=["Admin","User"];
   datrole;
@@ -45,6 +29,7 @@ export class SuperComponent implements OnInit {
 }
 form_delete=1;
 length;
+flag=0;
 getuser()
 {
   this.postapi.getusers().subscribe(info=>{
@@ -54,7 +39,15 @@ getuser()
 }
 getapi()
  {
-    this.form_add=0;  
+  if(this.flag==0)
+  {
+    this.form_add=0;
+    this.flag=1;
+  }
+  else{
+    this.form_add=1;
+    this.flag=0
+  }
     
 }
  postuser(form1){

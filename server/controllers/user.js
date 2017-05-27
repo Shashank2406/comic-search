@@ -237,9 +237,9 @@ exports.searchuser = function (req, res) {
 
 
 exports.searchcomic = function (req, res) {
-    console.log(req.params.reg);
-    var regex = RegExp(req.params.reg);
-    Comic.find({
+    //console.log(req.params.reg);
+    var regex = RegExp(req.params.reg,'i');
+    Series.find({
         name: regex
     }, function (err, response) {
         if (err) {

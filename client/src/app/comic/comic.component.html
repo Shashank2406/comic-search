@@ -3,7 +3,16 @@
     <div class="jumbotron">
       <div class="container">
         <h1 class="text-center">Comic Section</h1>
-        <p class="text-center">Select your favourite comic</p>
+        <p class="text-center">Read your favourite comic</p>
         <!--<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">Login</a></p>-->
       </div>
     </div>
+
+
+    <!--<div *ngIf="!display">-->
+<ul class="list-group" *ngFor="let items of data1">
+  <li class="list-group-item">{{items.name}}</li>
+  <img src="{{items.image}}"/>
+</ul>
+
+<!--<img src="data:image/png;base64,{{image}}" ng-model="updatedPhoto" />-->

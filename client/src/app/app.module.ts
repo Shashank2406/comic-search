@@ -19,6 +19,7 @@ import { SeasonComponent } from './season/season.component';
 import { ComicAdminComponent } from './comic-admin/comic-admin.component';
 import { DatePickerModule } from 'ng2-datepicker';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+import {Configuration} from "./config"
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
     DatePickerModule,
     RouterModule.forRoot(rou)
   ],
-  providers: [ConnectService,AuthService,AuthadminService],
+  providers: [ConnectService,AuthService,AuthadminService,Configuration],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectService } from '../connect.service';
-import { FileUploader } from 'ng2-file-upload';
+
 
 @Component({
   selector: 'app-comic-admin',
@@ -13,7 +13,13 @@ export class ComicAdminComponent implements OnInit {
   form_comic=1;
   comic
   flag=0;
-  public uploader:FileUploader = new FileUploader({url:'http://localhost:2001/upload'});
+  base64;
+  senddata={
+    name: "", 
+    description: "", 
+    id: "",
+    image :""
+  }
   ngOnInit() {
     this.getcomic();
   }
@@ -35,21 +41,37 @@ getapi(){
     this.flag=0
   }
 }
-// postuser(data){
-//   data.startson=data.startson.formatted;
-//   data.endson=data.endson.formatted;
-//   this.postapi.postseason(data).subscribe(data=>{
-//     this.form_series=1;
-//     if(data.status==false)
-//     {
-//       alert("Series ID not Found")
-//     }
-//     else{
-//       console.log(data);
-//     this.getseason();
-//     }
-//   })
-//  }
+changeListener(event){
+  console.log(event.target)
+  this.encodeImageFileAsURL(event.target)
+}
+encodeImageFileAsURL(element) {
+  var file = element.files[0];
+  var reader = new FileReader();
+  reader.onloadend=(data=>{
+    this.base64=reader.result;
+    //console.log('RESULT', reader.result)
+  })
+  reader.readAsDataURL(file);
+  //console.log(this.base64);
+}
+postuser(data){
+
+  this.senddata=data;
+  this.senddata.image=this.base64;
+  console.log(this.senddata)
+  this.postapi.postcomic(data).subscribe(data=>{
+    //this.form_series=1;
+    if(data.status==false)
+    {
+      alert("Comic ID not Found")
+    }
+    else{
+      console.log(data);
+    this.getcomic();
+    }
+  })
+ }
  deleteuser(comic_name){
    this.postapi.deletecomic(comic_name).subscribe(data=>{
      console.log(data)

@@ -20,7 +20,7 @@
   </table>
 <button type="submit" class="btn btn-success" (click)="getapi()">Add New Comic</button> 
 
-<!--<div *ngIf="!form_comic">
+<div *ngIf="!form_comic">
 <form #form1="ngForm" (ngSubmit)="postuser(form1.value)">
     <div class="form-group">
     <input required type="text" name="name" [(ngModel)]="name_1" #name="ngModel" placeholder="Name of series" class="form-control">
@@ -31,12 +31,16 @@
     <div class="form-group">
     <input required type="text" name="id" [(ngModel)]="ser" #id="ngModel" placeholder="Series ID" class="form-control">
     </div>
+     <div class="form-group">
+     <label for="single">Destination</label>
+     <input type="file"  name="single" accept="image/*" (change)="changeListener($event)" />                                  
+    </div> 
 <button type="submit" class="btn btn-success">Proceed</button>
 </form>
-</div>-->
+</div>
 
 
-<div class="container">
+<!--<div class="container">
   <div class="row">
     <div class="col-md-4">
       <form>           
@@ -48,4 +52,4 @@
               <span class="glyphicon glyphicon-upload"></span> Upload
       </button>        
     </form>
-</div>
+</div>-->
