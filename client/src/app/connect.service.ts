@@ -9,6 +9,32 @@ import {Configuration} from "./config"
 export class ConnectService {
 
   constructor(public httpcall : Http,public apiurl:Configuration) { }
+  updatecomic(form,id){
+    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    console.log(form);
+    //console.log(this.apiurl.UrlObj.seasonupdate)
+    return this.httpcall.put(this.apiurl.UrlObj.comicupdate+id, form, headers).map((res: Response) => res.json());
+  }
+  updateseason(form,id){
+    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    console.log(form);
+    //console.log(this.apiurl.UrlObj.seasonupdate)
+    return this.httpcall.put(this.apiurl.UrlObj.seasonupdate+id, form, headers).map((res: Response) => res.json());
+  }
+  updateseries(form,id){
+    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    console.log(form);
+    return this.httpcall.put(this.apiurl.UrlObj.seriesupdate+id, form, headers).map((res: Response) => res.json());
+  }
+  updateusers(form,id){
+    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    console.log(form);
+    return this.httpcall.put(this.apiurl.UrlObj.userupdate+id, form, headers).map((res: Response) => res.json());
+  }
   deleteseries(id): Observable<any> {
     return this.httpcall.get(this.apiurl.UrlObj.deleteseries+id).map(
       data => data.json()

@@ -13,6 +13,10 @@
 <ul class="list-group" *ngFor="let items of data1">
   <li class="list-group-item">{{items.name}}</li>
   <img src="{{items.image}}"/>
+  <div *ngIf="valid">
+		<input type="description" name="description" #box placeholder="Comment">
+    <button (click)="comment(box.value,items._id)" class="btn btn-default">Comment</button>  
+  </div>
 </ul>
 
 <!--<img src="data:image/png;base64,{{image}}" ng-model="updatedPhoto" />-->

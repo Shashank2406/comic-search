@@ -19,6 +19,7 @@ export class SuperComponent implements OnInit {
   types=["Admin","User"];
   datrole;
   form_add=1;
+  form_edit=1;
   form_send_add={
     username:"",
     password:"",
@@ -26,30 +27,54 @@ export class SuperComponent implements OnInit {
   }
   ngOnInit() {
    this.getuser()
-}
-form_delete=1;
-length;
-flag=0;
-getuser()
-{
-  this.postapi.getusers().subscribe(info=>{
+  }
+  form_delete=1;
+  length;
+  flag=0;
+  flag_1=0;
+  id;
+  updateuser(form1){
+    this.postapi.updateusers(form1,this.id).subscribe(data=>{
+      if(data.status==false){
+        console.log("Error")
+      }
+      this.getuser();
+      this.form_edit=1;
+      this.flag_1=0
+    })
+  }
+  edituser(id){
+    this.id=id;
+    if(this.flag_1==0)
+    {
+      this.form_edit=0;
+      this.flag_1=1;
+    }
+    else{
+      this.form_edit=1;
+      this.flag_1=0
+    }
+  }
+  getuser()
+  {
+    this.postapi.getusers().subscribe(info=>{
     this.users=info.respData.data;
     console.log(this.users)
-  })
-}
-getapi()
- {
-  if(this.flag==0)
+    })
+  }
+  getapi()
   {
-    this.form_add=0;
-    this.flag=1;
-  }
-  else{
-    this.form_add=1;
-    this.flag=0
-  }
+    if(this.flag==0)
+    {
+      this.form_add=0;
+      this.flag=1;
+    }
+    else{
+      this.form_add=1;
+      this.flag=0
+    }
     
-}
+  }
  postuser(form1){
   this.form_send_add=form1;
   this.form_send_add.role=this.type;

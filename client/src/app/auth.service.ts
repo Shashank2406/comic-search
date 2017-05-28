@@ -24,12 +24,14 @@ export class AuthService implements CanActivate {
         this.router1.navigate(['/admin'])
       }
       else{
-        if(this.role=="superadmin")
+        if(this.role=="superadmin"){
         this.router1.navigate(['/super'])
       }
-
-      
+      else{
+        this.router1.navigate(['/search'])
+      }
     }
+  }
   }
   
   canActivate(route: ActivatedRouteSnapshot) {

@@ -4,7 +4,7 @@
       <tr>
         <th>Name</th>
         <th>Series ID</th>
-        <th>season ID</th>
+        <th>Season ID</th>
         <th>Description</th>
         <th>StartsOn</th>
         <th>Ends</th>
@@ -18,7 +18,7 @@
         <td>{{items._id}}</td>
         <td>{{items.description}}</td>
         <td>{{items.startson}}</td>
-        <td>{{items.endson}}</td><button (click)="deleteuser(items._id)" type="submit" class="btn btn-success">Delete</button>
+        <td>{{items.endson}}</td><button (click)="deleteuser(items._id)" type="submit" class="btn btn-danger">Delete</button><button (click)="editseason(items._id)" type="submit" class="btn btn-primary">Edit</button>
       </tr>
     </tbody>
   </table>
@@ -43,5 +43,26 @@
     <label>Endson</label><ng2-datepicker required name ="endson" [(ngModel)]="end" ></ng2-datepicker>
     </div>
 <button type="submit" class="btn btn-success">Proceed</button>
+</form>
+</div>
+
+<div *ngIf="!form_edit">
+<form #form1="ngForm" (ngSubmit)="updateseason(form1.value)">
+    <div class="form-group">
+    <input required type="text" name="name" [(ngModel)]="name_1" #name="ngModel" placeholder="Name of series" class="form-control">
+    </div>
+    <div class="form-group">
+    <input required type="text" name="description" [(ngModel)]="desc" #description="ngModel" placeholder="Description" class="form-control">
+    </div>
+    <div class="form-group">
+    <input required type="text" name="id" [(ngModel)]="ser" #id="ngModel" placeholder="Series ID" class="form-control">
+    </div>
+    <div class="form-group">
+    <label>StartsOn</label><ng2-datepicker required name ="startson" [(ngModel)]="start" ></ng2-datepicker>
+    </div>
+    <div class="form-group">
+    <label>Endson</label><ng2-datepicker required name ="endson" [(ngModel)]="end" ></ng2-datepicker>
+    </div>
+<button type="submit" class="btn btn-success">Proceed with Edit</button>
 </form>
 </div>

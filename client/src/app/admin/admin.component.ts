@@ -13,14 +13,40 @@ export class AdminComponent implements OnInit {
   series;
   form_series=1;
   flag=0
+  id;
+  form_edit=1;
+  flag_1=0;
   ngOnInit() {
     this.getseries();
+  }
+  updateseries(form1){
+    console.log(this.id)
+    this.postapi.updateseries(form1,this.id).subscribe(data=>{
+      if(data.status==false){
+        console.log("Error")
+      }
+      this.getseries();
+      this.form_edit=1;
+      this.flag_1=0
+    })
   }
   getseries(){
     this.postapi.getseries().subscribe(info=>{
     this.series=info.respData.data;
   })
 }
+editseries(id){
+    this.id=id;
+    if(this.flag_1==0)
+    {
+      this.form_edit=0;
+      this.flag_1=1;
+    }
+    else{
+      this.form_edit=1;
+      this.flag_1=0
+    }
+  }
 getapi(){
   if(this.flag==0)
   {

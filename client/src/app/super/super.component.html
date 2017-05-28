@@ -20,7 +20,7 @@
         <td>{{items.username}}</td>
         <td>{{items._id}}</td>
         <td>{{items.role}}</td>
-        <button (click)="deleteuser(items.username)" type="submit" class="btn btn-success">Delete</button><button (click)="deleteuser(items.username)" type="submit" class="btn btn-success">Edit</button>
+        <button (click)="deleteuser(items.username)" type="submit" class="btn btn-danger">Delete</button><button (click)="edituser(items._id)" type="submit" class="btn btn-primary">Edit</button>
       </tr>
     </tbody>
   </table>
@@ -37,7 +37,7 @@
     <div>
     <h2>{{type}}</h2>
     <label>Type</label>
-    <select [(ngModel)]="type" name="Select type" class="ui fluid search selection dropdown"> 
+    <select [(ngModel)]="type" name="role" class="ui fluid search selection dropdown"> 
     <option *ngFor="let n of types" [attr.value]="n">{{n}}</option>
     </select>
 </div>
@@ -45,47 +45,24 @@
 </form>
 </div>
 
-
-
-
-<!--<div>
-    <h2>You want to {{action}}</h2>
-    <label>Action</label>
-    <select [(ngModel)]="action" name="Select action" class="ui fluid search selection dropdown"> 
-    <option *ngFor="let n of actions" [attr.value]="n">{{n}}</option>
-    </select>
-</div>
-<div>
+<div *ngIf="!form_edit">
+<form #form1="ngForm" (ngSubmit)="updateuser(form1.value)">
+    <div class="form-group">
+    <input required type="text" name="username" [(ngModel)]="user" #username="ngModel" placeholder="New Username" class="form-control">
+    </div>
+    <div class="form-group">
+    <input required type="password" name="password" [(ngModel)]="pass" #password="ngModel" placeholder="New Password" class="form-control">
+    </div>
+    <div>
     <h2>{{type}}</h2>
     <label>Type</label>
-    <select [(ngModel)]="type" name="Select type" class="ui fluid search selection dropdown"> 
+    <select [(ngModel)]="type" name="role" class="ui fluid search selection dropdown"> 
     <option *ngFor="let n of types" [attr.value]="n">{{n}}</option>
     </select>
 </div>
-
-<span *ngIf="form_add">
-<button type="submit" class="btn btn-success" (click)="getapi(action,type)">Proceed!</button>
-</span>
-
-<div *ngIf="!form_add">
-<form #form1="ngForm" (ngSubmit)="postuser(form1.value)">
-    <div class="form-group">
-    <input type="text" name="username" [(ngModel)]="user" #username="ngModel" placeholder="Enter your Username" class="form-control">
-    </div>
-    <div class="form-group">
-    <input type="password" name="password" [(ngModel)]="pass" #password="ngModel" placeholder="Enter your Password" class="form-control">
-    </div>
-<button type="submit" class="btn btn-success">Proceed</button>
+<button type="submit" class="btn btn-success">Proceed with desired Edit</button>
 </form>
 </div>
 
 
 
-<div *ngIf="!form_delete">
-    <h2>Select User</h2>
-    
-    <select [(ngModel)]="users" name="Select type" class="ui fluid search selection dropdown"> 
-    <option *ngFor="let n of users" [attr.value]="n">{{n}}</option>
-    </select>
-    <button (click)="deleteuser(users)" type="submit" class="btn btn-success">Delete</button>
-</div>-->
