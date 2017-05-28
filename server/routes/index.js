@@ -22,6 +22,7 @@ router.route('/comic/update/:id')
 
 router.route('/season/update/:id')
  .put(userController.updateSeason) 
+ .get(userController.getpatseason)
 
 router.route('/comment/update/')
  .put(userController.postcomment)
@@ -45,15 +46,18 @@ router.route('/series')
  .post(userController.postseries)
  .get(userController.getseries)
 
- router.route('/season')
+router.route('/season')
  .post(userController.postseason)
  .get(userController.getseason)
 
- router.route('/comic/get')
+router.route('/comic')
+.get(userController.error)
+
+router.route('/comic/get')
  .post(userController.postcomic)
  .get(userController.getcomic)
 
- router.route('/comic/:reg')
+router.route('/comic/:reg')
  .get(userController.searchcomic)
 
 module.exports = router;

@@ -503,7 +503,38 @@ exports.searchuser = function (req, res) {
 };
 
 
-
+exports.getpatseason = function (req, res) {
+    //console.log(req.params.reg);
+    var regex = req.params.id
+    //console.log(regex)
+    Season.find({series_id: regex}, function (err, response) {
+        
+        if (err) {
+            return res.json({
+                            "status": false,
+                            "respData": {
+                        "data": err
+                                }
+                            });
+        }
+        //console.log(response)
+        if(response==[ ]){
+            return res.json({
+            "status": false,
+            "respData": {
+             "data":response
+            }
+        });
+    }
+    return res.json({
+            "status": true,
+            "respData": {
+             "data":response
+            }
+        });
+        
+    })
+};
 
 
 exports.searchcomic = function (req, res) {
@@ -712,3 +743,11 @@ exports.getcomic=function(req,res){
     })
 }
 
+exports.error=function(req,res){
+    return res.json({
+                    "status": false,
+                    "respData": {
+                    "data": "no entry"
+                        }
+            });
+}
