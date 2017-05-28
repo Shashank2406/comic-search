@@ -9,6 +9,11 @@ import {Configuration} from "./config"
 export class ConnectService {
 
   constructor(public httpcall : Http,public apiurl:Configuration) { }
+  getpatseason(id){
+    //console.log(form);
+    //console.log(this.apiurl.UrlObj.seasonupdate)
+    return this.httpcall.get(this.apiurl.UrlObj.getpatseason+id).map((res: Response) => res.json());
+  }
   putcomment(form){
     let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
     let options = new RequestOptions({ headers: headers });

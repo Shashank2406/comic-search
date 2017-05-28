@@ -68,7 +68,7 @@ export class ComicComponent implements OnInit {
   getcomment(){
     this.getdata.getcomment().subscribe(res=>{
       //console.log(res)
-      this.comments=res.respData.data;
+      this.comments=res.respData.data[0].comment_all;
       console.log(this.comments)
     })
   }

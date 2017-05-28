@@ -24,6 +24,6 @@
 <!--{{searchcomic.name}}-->
 <div *ngIf="!display">
 <ul class="list-group" *ngFor="let items of data">
-  <li class="list-group-item"><a>{{items.name}}</a></li>
+  <li class="list-group-item"><a (click)="series(items._id)">{{items.name}}</a></li>
 </ul>
 

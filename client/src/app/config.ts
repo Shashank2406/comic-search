@@ -22,7 +22,8 @@ export class Configuration {
         seriesupdate: "http://localhost:2001/api/series/update/",
         seasonupdate: "http://localhost:2001/api/season/update/",
         comicupdate: "http://localhost:2001/api/comic/update/",
-        commentpost: "http://localhost:2001/api/comment/update/"
+        commentpost: "http://localhost:2001/api/comment/update/",
+        getpatseason: "http://localhost:2001/api/season/update/"
 
     }
 
