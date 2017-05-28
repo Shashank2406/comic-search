@@ -1,4 +1,4 @@
-# comic-search
+# Comic-search
 There are three entities on this platform  Series-> Season-> Comics Series - Series is independent entity which may contain 1 or multiple seasons. 
 It contains (Name, description, created date, updated date, created by) Season - Season depends on Series which may contain 
 1 or multiple comics.(Name, description , starts on, ends on, created date, updated date) Comics - Comic depends on Season comic is single entity. which contains (Name, image, story, created date, updated date).          
@@ -12,3 +12,9 @@ It contains (Name, description, created date, updated date, created by) Season -
 9. User can search, login and comment using app.          
 10. App should have native date picker for start date and end date.         
 11. Json structure for apis should be  {   "status": true,   "respData": { "data": "your data either json or array"    } }
+
+## Installation
+
+1) npm install in both client and server folder
+2) ng serve in client folder
+3) node app.js in server folder
