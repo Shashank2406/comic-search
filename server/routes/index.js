@@ -23,6 +23,12 @@ router.route('/comic/update/:id')
 router.route('/season/update/:id')
  .put(userController.updateSeason) 
 
+router.route('/comment/update/')
+ .put(userController.postcomment)
+
+router.route('/comment/')
+ .get(userController.getcomment) 
+
 router.route('/series/delete/:id')
  .get(userController.deleteseries)
 

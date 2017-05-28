@@ -2,6 +2,85 @@ var User = require('../models/user');
 var Series = require('../models/series');
 var Season = require('../models/season');
 var Comic = require('../models/comic');
+var Comment = require('../models/comment');
+
+
+
+exports.getcomment=function(req,res){
+    Comment.find({}, function(err, response){
+        if(err) {
+            res.json({
+                            "status": false,
+                            "respData": {
+                        "data": err
+                                }
+                            });
+        }
+
+        res.json({
+            "status": true,
+            "respData": {
+             "data":response
+            }
+        });
+    })
+}
+
+
+exports.postcomment = function(req,res){
+    var id = req.body.image_id;
+    var cmt = req.body.name+":"+req.body.comment;
+    Comment.findOne({image_id:id},function(err,comment){
+        if(comment!=null)
+        {
+        comment.comment_all.push(cmt);
+        comment.updated_at=new Date();
+        comment.save(function (err, response) {
+        if(err) {
+            res.json({
+                            "status": false,
+                            "respData": {
+                        "data": err
+                                }
+                            });
+        }
+        res.json({
+            "status": true,
+            "respData": {
+             "data":response
+            }
+        })
+        
+    });
+        }
+    else{
+        var comment = new Comment({
+        image_id: req.body.image_id,
+        comment_all: req.body.name+":"+req.body.comment,
+        created_at: new Date(),
+        updated_at: ""
+    })
+    comment.save(function (err, response) {
+        if(err) {
+            res.json({
+                            "status": false,
+                            "respData": {
+                        "data": err
+                                }
+                            });
+        }
+        res.json({
+            "status": true,
+            "respData": {
+             "data":response
+            }
+        })
+        
+    });
+    }    
+})
+
+}
 
 exports.updateComic = function (req,res){
     var comic = new Comic({
