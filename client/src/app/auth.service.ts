@@ -28,6 +28,7 @@ export class AuthService implements CanActivate {
         this.router1.navigate(['/super'])
       }
       else{
+        
         this.router1.navigate(['/search'])
       }
     }

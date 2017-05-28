@@ -9,6 +9,13 @@ import {Configuration} from "./config"
 export class ConnectService {
 
   constructor(public httpcall : Http,public apiurl:Configuration) { }
+  putcomment(form){
+    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    console.log(form);
+    //console.log(this.apiurl.UrlObj.seasonupdate)
+    return this.httpcall.put(this.apiurl.UrlObj.commentpost, form, headers).map((res: Response) => res.json());
+  }
   updatecomic(form,id){
     let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
     let options = new RequestOptions({ headers: headers });
@@ -77,6 +84,12 @@ export class ConnectService {
   getusers(): Observable<any>
   {
     return this.httpcall.get(this.apiurl.UrlObj.getuser).map(
+      data=>data.json()
+    );
+  }
+  getcomment(): Observable<any>
+  {
+    return this.httpcall.get(this.apiurl.UrlObj.getcomment).map(
       data=>data.json()
     );
   }

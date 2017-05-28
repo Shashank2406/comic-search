@@ -9,11 +9,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user:string;
-  pass:string;
+  
   constructor(public send:ConnectService,public sender:AuthService) { 
-    this.user="";
-    this.pass="";
+    
   }
 
   ngOnInit() {
@@ -23,6 +21,7 @@ export class LoginComponent implements OnInit {
     // console.log(form1.value.username);
     // console.log(form1.value.password);
     console.log(form1)
+    localStorage.setItem("username",form1.username);
     this.send.verify(form1).subscribe(data=>{
     //console.log(data);
     this.sender.verifier(data);

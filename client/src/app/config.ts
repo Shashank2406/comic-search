@@ -16,11 +16,13 @@ export class Configuration {
         postseries: "http://localhost:2001/api/series/",
         postcomic: "http://localhost:2001/api/comic/get",
         postseason: "http://localhost:2001/api/season/",
+        getcomment: "http://localhost:2001/api/comment/",
         searchcomic: "http://localhost:2001/api/comic/",
         userupdate: "http://localhost:2001/api/user/update/",
         seriesupdate: "http://localhost:2001/api/series/update/",
         seasonupdate: "http://localhost:2001/api/season/update/",
-        comicupdate: "http://localhost:2001/api/comic/update/"
+        comicupdate: "http://localhost:2001/api/comic/update/",
+        commentpost: "http://localhost:2001/api/comment/update/"
 
     }
 
