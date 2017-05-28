@@ -3,23 +3,26 @@ var router = express.Router();
 
 var userController = require('../controllers/user');
 
-// router.route('/users')
-//   .post(userController.postUsers)
-//   .get(userController.getUsers);
 
-// router.route('/users/update/:id')
-// 	.put(userController.updateUsers)
-// 	.delete(userController.deleteUsers) 
-//   .get(userController.idsearch);
-
-// router.route('/users/search/:reg')
-//   .get(userController.regexsearch);
 router.route('/user')
  .post(userController.postuser)
  .get(userController.getuser)
 
 router.route('/user/delete/:username')
  .get(userController.deleteusers)
+
+router.route('/user/update/:id')
+ .put(userController.updateUsers)
+
+router.route('/series/update/:id')
+ .put(userController.updateSeries)
+
+router.route('/comic/update/:id')
+ .put(userController.updateComic) 
+
+router.route('/season/update/:id')
+ .put(userController.updateSeason) 
+
 router.route('/series/delete/:id')
  .get(userController.deleteseries)
 
@@ -31,7 +34,6 @@ router.route('/comic/delete/:id')
 
 router.route('/user/verify')
  .post(userController.searchuser) 
-
 
 router.route('/series')
  .post(userController.postseries)
