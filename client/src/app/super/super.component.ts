@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { data } from './role.js';
+
 import { AuthService } from '../auth.service';
 import { Router} from '@angular/router';
 import { ConnectService } from '../connect.service';

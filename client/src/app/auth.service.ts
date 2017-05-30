@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate ,Router} from '@angular/router';
 import {ActivatedRouteSnapshot} from '@angular/router';
-
+import { data } from './role.js';
 
 
 @Injectable()
@@ -19,12 +19,12 @@ export class AuthService implements CanActivate {
       //console.log(info)
       //alert(this.role)
       localStorage.setItem("role",this.role)
-      if(this.role=="Admin")
+      if(this.role==data[1].role)
       { 
         this.router1.navigate(['/admin'])
       }
       else{
-        if(this.role=="superadmin"){
+        if(this.role==data[0].role){
         this.router1.navigate(['/super'])
       }
       else{

@@ -17,8 +17,9 @@
 		<input type="description" name="description" #box placeholder="Comment">
     <button (click)="comment(box.value,items._id)" class="btn btn-default">Comment</button>  
   </div>
-  <ul class="list-group" *ngFor="let items of comments">
-  <li class="list-group-item">{{items}}</li>
+  <ul class="list-group" *ngFor="let item of comments">
+
+  <li class="list-group-item">{{item}}</li>
 </ul>
 
 
