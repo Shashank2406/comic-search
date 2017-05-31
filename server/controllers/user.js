@@ -3,7 +3,7 @@ var Series = require('../models/series');
 var Season = require('../models/season');
 var Comic = require('../models/comic');
 var Comment = require('../models/comment');
-
+var md5 = require('md5');
 
 
 exports.getcomment=function(req,res){
@@ -426,9 +426,10 @@ exports.deleteusers=function(req,res){
     })
 }   
 exports.postuser = function(req,res){
+    var crpyt = md5(req.body.password)
     var user = new User({
         username: req.body.username,
-        password: req.body.password,
+        password: crpyt,
         role: req.body.role,
         created_at: new Date(),
         updated_at: ""
@@ -474,8 +475,9 @@ exports.getuser=function(req,res){
 
 exports.searchuser = function (req, res) {
     //console.log(req.params.reg);
+    var crpyt = md5(req.body.password)
     var username1 = req.body.username;
-    var password1 = req.body.password;
+    var password1 = crpyt;
     User.findOne({username:username1,password:password1}, function (err, response) {
         if (err) {
             res.json({
